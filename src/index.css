@@ -1,0 +1,623 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  /* Modo base (secundaria, docente, directivo, familia): sistema Modernist */
+  --color-bg: #f3f2f2;
+  --color-surface: #eae9e9;
+  --color-text: #201e1d;
+  --color-accent: #ec3013;
+  --color-accent-2: #e15b47;
+  --color-accent-strong: #c42a10; /* Contraste > 4.5:1 con blanco #fff (5.7:1) */
+  --color-on-accent: #ffffff;
+  --color-divider: color-mix(in srgb, #201e1d 40%, transparent);
+
+  /* Tonal ramps */
+  --color-neutral-100: #f8f4f4;
+  --color-neutral-200: #eae7e7;
+  --color-neutral-300: #d7d3d3;
+  --color-neutral-400: #bab6b6;
+  --color-neutral-500: #9b9797;
+  --color-neutral-600: #7d7979;
+  --color-neutral-700: #605d5d;
+  --color-neutral-800: #444141;
+  --color-neutral-900: #2d2b2b;
+
+  --color-accent-100: #fff2ef;
+  --color-accent-200: #ffe0d9;
+  --color-accent-300: #ffc4b8;
+  --color-accent-400: #ff9783;
+  --color-accent-500: #ff563c;
+  --color-accent-600: #dd2b0f;
+  --color-accent-700: #ae1800;
+  --color-accent-800: #7c1405;
+  --color-accent-900: #4d170e;
+
+  --color-accent-2-100: #fff2ef;
+  --color-accent-2-200: #ffe0da;
+  --color-accent-2-300: #ffc4b9;
+  --color-accent-2-400: #ff9784;
+  --color-accent-2-500: #ef6853;
+  --color-accent-2-600: #c94b39;
+  --color-accent-2-700: #9e3526;
+  --color-accent-2-800: #71261b;
+  --color-accent-2-900: #471d16;
+
+  --font-heading: "Archivo", system-ui, sans-serif;
+  --font-heading-weight: 800;
+  --font-body: "Archivo", system-ui, sans-serif;
+
+  --space-1: 4px;
+  --space-2: 8px;
+  --space-3: 12px;
+  --space-4: 16px;
+  --space-6: 24px;
+  --space-8: 32px;
+
+  /* Modo base: radios 0px */
+  --radius-sm: 0px;
+  --radius-md: 0px;
+  --radius-lg: 0px;
+
+  /* Elevation */
+  --shadow-sm: 0 1px 2px color-mix(in srgb, #2d2b2b 14%, transparent);
+  --shadow-md: 0 3px 10px color-mix(in srgb, #2d2b2b 16%, transparent);
+  --shadow-lg: 0 12px 32px color-mix(in srgb, #2d2b2b 22%, transparent);
+
+  /* Escala tipográfica base (mínimo 12px) */
+  --font-size-xs: 12px;
+  --font-size-sm: 14px;
+  --font-size-base: 15px;
+  --font-size-lg: 18px;
+  --font-size-xl: 20px;
+  --font-size-2xl: 24px;
+  --font-size-3xl: 32px;
+  --font-size-4xl: 40px;
+
+  /* Alturas de toque (mínimo 44px en estándar WCAG / táctil) */
+  --btn-min-height: 44px;
+  --touch-target-min: 44px;
+}
+
+/* Modo Primaria — Estilo SUAVE */
+[data-modo="primaria"] {
+  --color-bg: #fbf7f4;
+  --color-surface: #ffffff;
+  --color-accent: #e15b47;
+  --color-accent-strong: #bf4231; /* Contraste > 4.5:1 con blanco #fff (5.2:1) para botones y texto */
+  --color-on-accent: #ffffff;
+  --color-accent-600: #c94b39;
+  --color-accent-700: #9e3526;
+  --color-divider: color-mix(in srgb, #201e1d 15%, transparent);
+
+  --radius-sm: 8px;
+  --radius-md: 16px;
+  --radius-lg: 24px;
+
+  /* Escala tipográfica primaria (mínimo 14px en textos de soporte) */
+  --font-size-xs: 14px;
+  --font-size-sm: 15px;
+  --font-size-base: 17px;
+  --font-size-lg: 20px;
+  --font-size-xl: 24px;
+  --font-size-2xl: 28px;
+  --font-size-3xl: 34px;
+  --font-size-4xl: 42px;
+
+  --btn-min-height: 48px;
+  --touch-target-min: 48px;
+}
+
+body {
+  background-color: var(--color-bg);
+  color: var(--color-text);
+  font-family: var(--font-body);
+  font-size: var(--font-size-base);
+  line-height: 1.55;
+}
+
+:focus-visible {
+  outline: 2px solid var(--color-accent-strong);
+  outline-offset: 2px;
+}
+
+::selection {
+  background: color-mix(in srgb, var(--color-accent) 30%, transparent);
+}
+
+/* Estilo Duolingo: botones táctiles con sombra de apoyo y micro-animaciones */
+.btn-duo-primary {
+  background-color: var(--color-accent-strong);
+  color: var(--color-on-accent);
+  box-shadow: 0 4px 0 color-mix(in srgb, var(--color-accent-strong) 75%, #000);
+  border-radius: 1rem;
+  font-family: var(--font-heading);
+  font-weight: 800;
+  min-height: var(--btn-min-height, 48px);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform 100ms ease, box-shadow 100ms ease, filter 100ms ease;
+}
+
+.btn-duo-primary:hover:not(:disabled) {
+  filter: brightness(1.05);
+}
+
+.btn-duo-primary:active:not(:disabled) {
+  transform: translateY(3px);
+  box-shadow: 0 1px 0 color-mix(in srgb, var(--color-accent-strong) 75%, #000);
+}
+
+.btn-duo-secondary {
+  background-color: var(--color-surface);
+  color: var(--color-text);
+  border: 2px solid var(--color-divider);
+  box-shadow: 0 4px 0 color-mix(in srgb, var(--color-text) 22%, transparent);
+  border-radius: 1rem;
+  font-family: var(--font-heading);
+  font-weight: 800;
+  min-height: var(--btn-min-height, 48px);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform 100ms ease, box-shadow 100ms ease, background-color 100ms ease;
+}
+
+.btn-duo-secondary:hover:not(:disabled) {
+  background-color: var(--color-neutral-100);
+}
+
+.btn-duo-secondary:active:not(:disabled) {
+  transform: translateY(3px);
+  box-shadow: 0 1px 0 color-mix(in srgb, var(--color-text) 22%, transparent);
+}
+
+.btn-duo-disabled,
+.btn-duo-primary:disabled,
+.btn-duo-secondary:disabled {
+  background-color: var(--color-neutral-300) !important;
+  color: var(--color-neutral-700) !important;
+  border-color: transparent !important;
+  box-shadow: 0 4px 0 var(--color-neutral-400) !important;
+  transform: none !important;
+  cursor: not-allowed !important;
+  filter: none !important;
+}
+
+@keyframes bounce-chasqui {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-8px) scale(1.03);
+  }
+}
+
+.animate-mascota-festejo {
+  animation: bounce-chasqui 1.2s ease-in-out infinite;
+}
+
+@keyframes confetti-fall {
+  0% {
+    transform: translateY(-10px) rotate(0deg);
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(120px) rotate(360deg);
+    opacity: 0;
+  }
+}
+
+.animate-confeti {
+  animation: confetti-fall 1.5s cubic-bezier(0.25, 1, 0.5, 1) forwards;
+}
+
+@keyframes slide-up-sheet {
+  from {
+    transform: translateY(100%);
+    opacity: 0.5;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+.animate-slide-up {
+  animation: slide-up-sheet 220ms ease-out forwards;
+}
+
+/* ========================================================= */
+/* TEMA ALUMNO — Tactile Gamified Learning (Acotado al Alumno) */
+/* ========================================================= */
+.tema-alumno {
+  font-family: 'Nunito Sans', 'Nunito', system-ui, sans-serif;
+  --font-heading: 'Nunito Sans', 'Nunito', system-ui, sans-serif;
+  --font-body: 'Nunito Sans', 'Nunito', system-ui, sans-serif;
+  --color-bg: #fbf9f8;
+  --color-surface: #ffffff;
+  --color-text: #1b1c1c;
+  --color-divider: #e5e5e5;
+  --color-accent: #58cc02;
+  --color-accent-strong: #2b6c00;
+  --color-on-accent: #ffffff;
+}
+
+/* Inputs táctiles: pasan a borde azul 2px en foco sin halo borroso */
+.tema-alumno input:focus,
+.tema-alumno textarea:focus {
+  border-color: #1cb0f6 !important;
+  outline: none !important;
+  box-shadow: none !important;
+}
+
+/* Efecto de elevación táctil 3D característico de Duolingo / Stitch */
+.btn-3d {
+  transition: transform 0.1s ease, border-color 0.1s ease, filter 0.1s ease;
+  position: relative;
+  user-select: none;
+}
+.btn-3d:active:not(:disabled) {
+  transform: translateY(3px);
+  border-bottom-width: 1px !important;
+}
+
+/* Botón 3D Primario (Verde): Fondo #58CC02, Texto #1E5000 (AA 5.2:1), Borde #46A302 */
+.btn-3d-primary {
+  background-color: #58cc02;
+  color: #1e5000;
+  border-bottom: 4px solid #46a302;
+  font-family: 'Nunito Sans', 'Nunito', sans-serif;
+  font-weight: 800;
+  border-radius: 1rem;
+  transition: transform 0.1s ease, border-color 0.1s ease, filter 0.1s ease;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  user-select: none;
+}
+.btn-3d-primary:hover:not(:disabled) {
+  filter: brightness(1.03);
+}
+.btn-3d-primary:active:not(:disabled) {
+  transform: translateY(3px);
+  border-bottom-width: 1px !important;
+}
+.btn-3d-primary:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+  transform: none;
+}
+
+/* Botón 3D Secundario (Azul): Fondo #1CB0F6, Texto #00263A (AA 6.3:1), Borde #1899D6 */
+.btn-3d-secondary {
+  background-color: #1cb0f6;
+  color: #00263a;
+  border-bottom: 4px solid #1899d6;
+  font-family: 'Nunito Sans', 'Nunito', sans-serif;
+  font-weight: 800;
+  border-radius: 1rem;
+  transition: transform 0.1s ease, border-color 0.1s ease, filter 0.1s ease;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  user-select: none;
+}
+.btn-3d-secondary:hover:not(:disabled) {
+  filter: brightness(1.03);
+}
+.btn-3d-secondary:active:not(:disabled) {
+  transform: translateY(3px);
+  border-bottom-width: 1px !important;
+}
+.btn-3d-secondary:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+  transform: none;
+}
+
+/* Botón 3D Outline: Fondo Blanco, Borde 2px #E5E5E5, Borde inf #D4D4D4, Texto #1B1C1C */
+.btn-3d-outline {
+  background-color: #ffffff;
+  color: #1b1c1c;
+  border: 2px solid #e5e5e5;
+  border-bottom: 4px solid #d4d4d4;
+  font-family: 'Nunito Sans', 'Nunito', sans-serif;
+  font-weight: 800;
+  border-radius: 1rem;
+  transition: transform 0.1s ease, background-color 0.1s ease;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  user-select: none;
+}
+.btn-3d-outline:hover:not(:disabled) {
+  background-color: #f7f9fa;
+}
+.btn-3d-outline:active:not(:disabled) {
+  transform: translateY(3px);
+  border-bottom-width: 2px !important;
+}
+
+/* Barra de progreso estilo Duolingo con brillo */
+.progress-duo-bar {
+  position: relative;
+  overflow: hidden;
+}
+.progress-duo-bar::after {
+  content: '';
+  position: absolute;
+  top: 2px;
+  left: 6px;
+  right: 6px;
+  height: 4px;
+  background: rgba(255, 255, 255, 0.4);
+  border-radius: 9999px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .btn-3d:active,
+  .btn-3d-primary:active,
+  .btn-3d-secondary:active,
+  .btn-3d-outline:active,
+  .btn-duo-primary,
+  .btn-duo-secondary,
+  .btn-duo-primary:active,
+  .btn-duo-secondary:active {
+    transition: none !important;
+    transform: none !important;
+  }
+  .pulso-llamado,
+  .animate-mascota-festejo,
+  .animate-confeti,
+  .animate-slide-up {
+    animation: none !important;
+    transform: none !important;
+    opacity: 1 !important;
+  }
+}
+
+
+/* ========================================================= */
+/* TEMA ADULTOS — misma estética táctil que el alumno, para docente, directivo y familia */
+/* (acotado: solo dentro de .tema-adultos; el alumno sigue con .tema-alumno)             */
+/* ========================================================= */
+.tema-adultos {
+  font-family: 'Nunito Sans', 'Nunito', system-ui, sans-serif;
+  --font-heading: 'Nunito Sans', 'Nunito', system-ui, sans-serif;
+  --font-body: 'Nunito Sans', 'Nunito', system-ui, sans-serif;
+  --font-heading-weight: 900;
+
+  --color-bg: #f7f9fa;
+  --color-surface: #ffffff;
+  --color-text: #1e293b;
+  --color-divider: #e2e8f0;
+  --color-accent: #58cc02;
+  --color-accent-strong: #2b6c00; /* 7:1 sobre blanco: sirve para texto, enlaces y fondos con texto blanco */
+  --color-on-accent: #ffffff;
+
+  /* Neutros: gris azulado */
+  --color-neutral-100: #f8fafc;
+  --color-neutral-200: #f1f5f9;
+  --color-neutral-300: #e2e8f0;
+  --color-neutral-400: #cbd5e1;
+  --color-neutral-500: #94a3b8;
+  --color-neutral-600: #64748b;
+  --color-neutral-700: #475569;
+  --color-neutral-800: #334155;
+  --color-neutral-900: #1e293b;
+
+  /* "Acento" de avisos y marcas (antes rojo): ahora ámbar suave, con textos oscuros que pasan contraste */
+  --color-accent-100: #fff2d6;
+  --color-accent-200: #ffe4a8;
+  --color-accent-300: #ffcf70;
+  --color-accent-400: #ffb020;
+  --color-accent-500: #ff9600;
+  --color-accent-600: #d67c00;
+  --color-accent-700: #8a4b00;
+  --color-accent-800: #6b3a00;
+  --color-accent-900: #4a2800;
+
+  /* Secundario: azul cielo */
+  --color-accent-2: #1cb0f6;
+  --color-accent-2-100: #ddf4ff;
+  --color-accent-2-200: #b8e6fb;
+  --color-accent-2-300: #84d3f8;
+  --color-accent-2-400: #4fc1f7;
+  --color-accent-2-500: #1cb0f6;
+  --color-accent-2-600: #0e76a8; /* 5:1 con texto blanco (avatares, fichas) */
+  --color-accent-2-700: #0b5e86;
+  --color-accent-2-800: #004666;
+  --color-accent-2-900: #00263a;
+
+  --radius-sm: 0.75rem;
+  --radius-md: 1rem;
+  --radius-lg: 1.5rem;
+  --shadow-sm: 0 1px 2px color-mix(in srgb, #1e293b 10%, transparent);
+  --shadow-md: 0 4px 12px color-mix(in srgb, #1e293b 12%, transparent);
+  --shadow-lg: 0 12px 32px color-mix(in srgb, #1e293b 18%, transparent);
+}
+
+/* Las clases de tipografía de Tailwind (font-heading, font-body, font-sans) traen Archivo fijo: dentro del tema pasan a Nunito */
+.tema-adultos .font-heading,
+.tema-adultos .font-body,
+.tema-adultos .font-sans {
+  font-family: 'Nunito Sans', 'Nunito', system-ui, sans-serif;
+}
+.tema-adultos h1,
+.tema-adultos h2,
+.tema-adultos h3,
+.tema-adultos h4 {
+  font-family: 'Nunito Sans', 'Nunito', system-ui, sans-serif;
+}
+
+/* Campos: borde de 2 px (lo bastante oscuro para verse), azul al enfocar y sin halo borroso */
+.tema-adultos input:not([type='checkbox']):not([type='radio']):not([type='range']),
+.tema-adultos select,
+.tema-adultos textarea {
+  border-width: 2px;
+  border-color: #94a3b8;
+  font-weight: 700;
+}
+.tema-adultos input:focus,
+.tema-adultos select:focus,
+.tema-adultos textarea:focus {
+  border-color: #1cb0f6 !important;
+  outline: none !important;
+  box-shadow: none !important;
+}
+.tema-adultos input:focus-visible,
+.tema-adultos select:focus-visible,
+.tema-adultos textarea:focus-visible {
+  box-shadow: 0 0 0 3px color-mix(in srgb, #1cb0f6 35%, transparent) !important;
+}
+
+/* Botones del sistema (componente Button): 3D como en el alumno */
+.tema-adultos .btn-ui {
+  border-radius: 1rem;
+  font-weight: 800;
+  transition: transform 0.1s ease, filter 0.1s ease, background-color 0.1s ease;
+}
+.tema-adultos .btn-ui:active:not(:disabled) {
+  transform: translateY(3px);
+  border-bottom-width: 1px !important;
+}
+.tema-adultos .btn-ui-primary {
+  background-color: #58cc02;
+  color: #1e5000;
+  border: 0;
+  border-bottom: 4px solid #46a302;
+  box-shadow: none;
+}
+.tema-adultos .btn-ui-primary:hover:not(:disabled) {
+  background-color: #58cc02;
+  filter: brightness(1.04);
+}
+.tema-adultos .btn-ui-secondary {
+  background-color: #ffffff;
+  color: #1e293b;
+  border: 2px solid #e2e8f0;
+  border-bottom: 4px solid #cbd5e1;
+  box-shadow: none;
+}
+.tema-adultos .btn-ui-secondary:hover:not(:disabled) {
+  background-color: #f8fafc;
+}
+.tema-adultos .btn-ui-ghost {
+  background-color: transparent;
+  color: #0b5e86;
+  border: 0;
+}
+.tema-adultos .btn-ui-ghost:hover:not(:disabled) {
+  background-color: #ddf4ff;
+}
+.tema-adultos .btn-ui:disabled {
+  opacity: 0.55;
+  box-shadow: none;
+}
+
+/* Enlaces y botones de acción que se escribieron a mano con el verde fuerte (p. ej. "Crear proyecto"): mismo 3D que el resto */
+.tema-adultos a.bg-accent-strong,
+.tema-adultos button.bg-accent-strong {
+  background-color: #58cc02;
+  color: #1e5000;
+  border: 0;
+  border-bottom: 4px solid #46a302;
+  border-radius: 1rem;
+  font-weight: 800;
+  transition: transform 0.1s ease, filter 0.1s ease;
+}
+.tema-adultos a.bg-accent-strong:hover,
+.tema-adultos button.bg-accent-strong:hover {
+  filter: brightness(1.04);
+  opacity: 1;
+}
+.tema-adultos a.bg-accent-strong:active,
+.tema-adultos button.bg-accent-strong:active {
+  transform: translateY(3px);
+  border-bottom-width: 1px;
+}
+
+/* Menú lateral: el elemento activo es una píldora verde con borde, como en el diseño */
+.tema-adultos .nav-item {
+  border: 2px solid transparent;
+  border-radius: 1rem;
+  font-weight: 800;
+}
+.tema-adultos .nav-item-activo {
+  background-color: #e5f8cf !important;
+  border-color: #58cc02 !important;
+  color: #2b6c00 !important;
+  box-shadow: none !important;
+}
+.tema-adultos .nav-item:not(.nav-item-activo):hover {
+  background-color: #f1f5f9 !important;
+}
+
+/* Encabezado (línea de abajo más suave) */
+.tema-adultos header,
+.tema-adultos aside {
+  border-color: #e2e8f0;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .tema-adultos .btn-ui:active:not(:disabled) {
+    transform: none;
+  }
+}
+
+/* Llamado a la acción pendiente (p. ej. "Revisar y autorizar"): un pulso suave que invita a tocar. Con animación reducida queda quieto. */
+@keyframes pulso-llamado {
+  0% { box-shadow: 0 0 0 0 rgba(88, 204, 2, 0.55); }
+  70% { box-shadow: 0 0 0 14px rgba(88, 204, 2, 0); }
+  100% { box-shadow: 0 0 0 0 rgba(88, 204, 2, 0); }
+}
+.pulso-llamado {
+  animation: pulso-llamado 1.8s ease-out infinite;
+}
+.pulso-llamado:hover,
+.pulso-llamado:focus-visible {
+  animation: none;
+}
+
+
+/* ========================================================= */
+/* HOJAS IMPRIMIBLES (una por semana)                         */
+/* ========================================================= */
+.hoja-a4 {
+  width: 210mm;
+  max-width: 100%;
+  min-height: 297mm;
+  margin: 0 auto;
+  padding: 16mm;
+  border: 1px solid #cbd5e1;
+  border-radius: 4px;
+  box-shadow: 0 2px 8px rgba(30, 41, 59, 0.1);
+}
+@media (max-width: 640px) {
+  .hoja-a4 { padding: 1rem; min-height: 0; }
+}
+@page {
+  size: A4;
+  margin: 14mm;
+}
+@media print {
+  html, body { background: #ffffff !important; }
+  .no-imprimir { display: none !important; }
+  .hoja-a4 {
+    width: auto;
+    min-height: 0;
+    margin: 0;
+    padding: 0;
+    border: 0;
+    border-radius: 0;
+    box-shadow: none;
+    break-after: page;
+    page-break-after: always;
+  }
+  .hoja-a4:last-child { break-after: auto; page-break-after: auto; }
+  .mision-hoja { break-inside: avoid; page-break-inside: avoid; }
+  * { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+}

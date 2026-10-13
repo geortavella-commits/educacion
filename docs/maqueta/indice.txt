@@ -1,0 +1,21 @@
+1a	1a · Docente · Panel web	7232
+4a	4a · Directivo · Panel de la escuela	6007
+4b	4b · Directivo · Alta de docentes y cursos	6108
+4c	4c · Docente · “Necesitan apoyo” (lista)	5212
+5a	5a · Docente · Primer uso: cargar planificación	6314
+5b	5b · Docente · Vista previa de “Exportar planificación”	3478
+6a	6a · Primaria · Mini-diagnóstico	1664
+6b	6b · Primaria · Pregunta de intereses	1918
+6c	6c · Secundaria · Mini-diagnóstico	1683
+6d	6d · Mini-diagnóstico · Final	832
+7	7 · Secundaria · Escalera de impacto	3393
+3a	3a · Docente · Crear proyecto con cobertura curricular	6777
+3b	3b · Docente · Sugerencias de grupos	4617
+3c	3c · Docente · Perfil del alumno	3566
+3d	3d · Primaria · Ingreso con código o QR	3639
+3e	3e · Consentimiento familiar	2261
+3f	3f · Vista de familia	2372
+2a	2a · Primaria · Inicio	3863
+2b	2b · Primaria · Tutor con voz	3742
+2c	2c · Secundaria · Tutor abierto	3899
+2d	2d · Secundaria · Proyecto	4679
