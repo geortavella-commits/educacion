@@ -108,6 +108,31 @@ Nunca van en Vercel ni con `VITE_`:
 ⚠️ Preview **nunca** apunta al proyecto de producción. Staging es un proyecto
 Supabase separado, con seed de datos **ficticios**.
 
+### Cómo quedó aplicado en ESTE proyecto (octubre 2026)
+
+- **Nombres reales de las variables** (no los de la tabla de arriba):
+  `VITE_SUPABASE_URL`, `VITE_SUPABASE_PUBLISHABLE_KEY` (clave `sb_publishable_…`, no
+  `ANON_KEY`) y `VITE_USAR_SUPABASE=true`. Sin esta última el build queda en modo simulado.
+- **Hoy hay UN solo proyecto Supabase en la nube** (`bhzfxwveiqenskwqxlug`) con datos
+  ficticios; hace de "staging". Cuando entren datos reales hay que crear otro proyecto para
+  producción y separar Preview de Production como indica esta skill.
+- **Proyecto Vercel** `educacion`, cuenta `geortavella-4008s-projects`, plan Pasatiempo
+  (Hobby), repo `geortavella-commits/educacion`, rama de producción `main`.
+- **Plan Hobby: el autor del commit tiene que ser la cuenta dueña.** Si no, el despliegue
+  queda "Obstruido" (*"el autor de la confirmación no tiene permiso para crear
+  despliegues"*). Firmar los commits como
+  `geortavella-commits <geortavella-commits@users.noreply.github.com>`
+  (`git config user.name/user.email` del repo, no el global). Un push nuevo con ese autor
+  destraba; no hace falta nada más.
+- **El primer deploy solo se dispara con un push posterior a la conexión.** Si el repo se
+  conectó después del push, empujar un commit (o crear un despliegue desde la pestaña
+  Despliegues).
+- Las variables `VITE_*` se incrustan al **construir**: cambiarlas exige redeploy.
+- `.env.*` está en `.gitignore` (incluido `.env.production`): las variables se cargan en el
+  panel de Vercel, no vienen del repo.
+- Tras desplegar: Supabase → Authentication → URL Configuration con la URL de Vercel (Site
+  URL y Redirect URLs `/**`), y probar refrescando una ruta interna (sin 404).
+
 ## 3. Staging con datos ficticios
 
 - Mantener un seed versionado (`supabase/seed.sql` o script) con escuelas,
